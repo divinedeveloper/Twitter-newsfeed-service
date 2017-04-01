@@ -1,0 +1,11 @@
+target/
+bin/
+.settings/
+.project
+.classpath
+.iml
+.ipr
+projectFilesBackup/
+.idea/
+grails-app/grails-app.iml
+src/templates/templates.iml
