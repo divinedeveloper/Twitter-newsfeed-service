@@ -1,4 +1,4 @@
-Following are steps to setup Karma backend for Admin and Corporate on a Ubuntu server 14.04 LTS.
+Following are steps to setup Twitter-newsfeed-service on a Ubuntu server 14.04 LTS.
 
 Create a user devuser in the server.
 
@@ -16,9 +16,9 @@ Install mysql  -
 
     sudo apt-get install mysql-server
     
-Setup the code in /home/devuser/projects/karma-newsfeed-service
+Setup the code in /home/devuser/projects/Twitter-newsfeed-service
 
- Changes for configuration settings for twitter4j and mail plugin need to be done in karma-newsfeed-service/grails-app/conf/Config.groovy
+ Changes for configuration settings for twitter4j and mail plugin need to be done in Twitter-newsfeed-service/grails-app/conf/Config.groovy
  
      //twitter4j configuration
     twitter4j {
@@ -43,9 +43,9 @@ Setup the code in /home/devuser/projects/karma-newsfeed-service
 
 Database setup (considering mysql username and password is root and root respectively)-
 
-    echo "CREATE USER 'admin'@'localhost' IDENTIFIED BY '\!karma\@'" | mysql -uroot -proot
-    echo "CREATE DATABASE karma" |  mysql -uroot -proot
-    echo "GRANT ALL ON karma.* TO 'admin'@'localhost'" |  mysql -uroot -proot
+    echo "CREATE USER 'admin'@'localhost' IDENTIFIED BY '\!newsfeed\@'" | mysql -uroot -proot
+    echo "CREATE DATABASE newsfeed" |  mysql -uroot -proot
+    echo "GRANT ALL ON newsfeed.* TO 'admin'@'localhost'" |  mysql -uroot -proot
     echo "flush privileges" |  mysql -uroot -proot
 
 Install java -
@@ -86,23 +86,16 @@ Copy the following contents into the file setenv.sh and save the file -
 
     JAVA_OPTS="-Djava.awt.headless=true -server -Xms640M -Xmx640m -XX:MaxPermSize=128M -XX:+UseParNewGC -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/var/log/tomcat7 -Djava.security.egd=file:/dev/./urandom"
 
-Get the code in the folder /home/devuser/projects/karma-newsfeed-service
+Get the code in the folder /home/devuser/projects/Twitter-newsfeed-service
 
-    /home/devuser/projects/karma-newsfeed-service
+    /home/devuser/projects/Twitter-newsfeed-service
 
-DDL for the database is in karma project - karma/sqldumps/dailydumps/ddl.sql
-    
-    cd /home/devuser/projects/karma/sqldumps/dailydumps
-
-Please enter the mysql password when prompted for it below -
-
-    mysql -u root -p karma < ddl.sql   
 
 Build application -
    
-    cd /home/devuser/projects/karma-newsfeed-service
+    cd /home/devuser/projects/Twitter-newsfeed-service
     grails war
-    sudo cp target/karma-newsfeed-service.war /var/lib/tomcat7/webapps/karma-newsfeed-service.war
+    sudo cp target/Twitter-newsfeed-service.war /var/lib/tomcat7/webapps/Twitter-newsfeed-service.war
 
 Start tomcat -
 
